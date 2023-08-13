@@ -30,7 +30,6 @@ function reducer(state, action) {
   }
 }
 function OrderScreen() {
-  // order/:id
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
   const { query } = useRouter();
@@ -122,7 +121,7 @@ function OrderScreen() {
 
   return (
     <Layout title={`Order ${orderId}`}>
-      <h1 className="mb-4 text-xl">{`Order ${orderId}`}</h1>
+      <h1 className="mb-4 text-xl text-white font-bold">{`Order ${orderId}`}</h1>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (
@@ -169,7 +168,7 @@ function OrderScreen() {
                   {orderItems.map((item) => (
                     <tr key={item._id} className="border-b">
                       <td>
-                        <Link href={`/product/${item.slug}`}>
+                        <Link href={`/product/${item.slug}`} legacyBehavior>
                           <a className="flex items-center">
                             <Image
                               src={item.image}

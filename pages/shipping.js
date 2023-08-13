@@ -57,9 +57,8 @@ export default function ShippingScreen() {
         onSubmit={handleSubmit(submitHandler)}
       >
 
-        <h1 className="mb-4 text-xl">Shipping Address</h1>
         <div className="mb-4">
-          <label htmlFor="fullName">Full Name</label>
+          <label className='text-white' htmlFor="fullName">Full Name</label>
           <input
             className="w-full"
             id="fullName"
@@ -73,10 +72,10 @@ export default function ShippingScreen() {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <label htmlFor="address">Address</label>
           <input
-            className="w-full"
+            className="w-full "
             id="address"
             {...register('address', {
               required: 'Please enter address',
@@ -88,7 +87,7 @@ export default function ShippingScreen() {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <label htmlFor="city">City</label>
           <input
             className="w-full"
@@ -102,7 +101,7 @@ export default function ShippingScreen() {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <label htmlFor="postalCode">Postal Code</label>
           <input
             className="w-full"
@@ -116,7 +115,7 @@ export default function ShippingScreen() {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 text-white">
           <label htmlFor="country">Country</label>
           <input
             className="w-full"

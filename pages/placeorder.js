@@ -63,10 +63,9 @@ export default function PlaceOrderScreen() {
   return (
     <Layout title="Place Order">
       <CheckoutWizard activeStep={2} />
-      <h1 className="mb-4 text-xl">Place Order</h1>
       {cartItems.length === 0 ? (
         <div>
-          Cart is empty. <Link href="/">Go shopping</Link>
+          Cart is empty. <Link href="/" legacyBehavior>Go shopping</Link>
         </div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5">
@@ -104,7 +103,7 @@ export default function PlaceOrderScreen() {
                   {cartItems.map((item) => (
                     <tr key={item._id} className="border-b">
                       <td>
-                        <Link href={`/product/${item.slug}`}>
+                        <Link href={`/product/${item.slug}`} legacyBehavior>
                           <a className="flex items-center">
                             <Image
                               src={item.image}

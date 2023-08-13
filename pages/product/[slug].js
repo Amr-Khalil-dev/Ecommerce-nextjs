@@ -1,6 +1,5 @@
 import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { toast } from "react-toastify";
@@ -35,9 +34,6 @@ export default function ProductScreen(props) {
 
 	return (
 		<Layout title={product.name}>
-			<div className="py-2">
-				<Link href="/" legacyBehavior>back to products</Link>
-			</div>
 			<div className="grid md:grid-cols-4 md:gap-3">
 				<div className="md:col-span-2">
 					<Image
@@ -48,10 +44,10 @@ export default function ProductScreen(props) {
 						layout="responsive"
 					></Image>
 				</div>
-				<div>
-					<ul>
+				<div className="text-white text-lg">
+					<ul className="p-2 mb-2">
 						<li>
-							<h1 className="text-lg">{product.name}</h1>
+							<h1 className="mb-3 text-2xl font-bold text-blue-600">{product.name}</h1>
 						</li>
 						<li>Category: {product.category}</li>
 						<li>Brand: {product.brand}</li>

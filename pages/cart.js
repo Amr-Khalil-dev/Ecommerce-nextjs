@@ -7,11 +7,13 @@ import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { BsXCircleFill } from "react-icons/bs";
+
 
 function CartScreen() {
 	const router = useRouter();
 	const { state, dispatch } = useContext(Store);
-	const {cart: { cartItems }} = state;
+	const { cart: { cartItems } } = state;
 	const removeItemHandler = (item) => {
 		dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
 	};
@@ -26,46 +28,47 @@ function CartScreen() {
 	};
 
 	return (
-		<Layout title="Shopping Cart">
-			<h1 className="mb-4 text-xl">Shopping Cart</h1>
+		<Layout title="Shopping Cart"  >
 			{cartItems.length === 0 ? (
-				<div>
+				<div className="text-white">
 					Cart is empty.
 					<Link href="/" legacyBehavior>
 						GO shopping
 					</Link>
 				</div>
 			) : (
-				<div className="grid md:grid-cols-4 md:gap-5">
+				<div className="grid md:grid-cols-4 md:gap-5 text-white">
 					<div className="overflow-x-auto md:col-span-3">
 						<table className="min-w-full ">
 							<thead className="border-b">
 								<tr>
-									<th className="p-5 text-left">Item</th>
-									<th className="p-5 text-right">Quantity</th>
-									<th className="p-5 text-right">Price</th>
-									<th className="p-5">Action</th>
+										<th className="p-5 text-left">Item</th>
+										<th className="p-5 text-center">Quantity</th>
+										<th className="p-5 text-center">Price</th>
+									<th className="p-5">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
 								{cartItems.map((item) => (
-									<tr key={item.slug} className="border-b">
+									<tr key={item.slug} className="border-b ">
 										<td>
 											<Link href={`/product/${item.slug}`} legacyBehavior>
-												<a className="flex items-center">
+												<a className="flex items-center mr-5">
 													<Image
+														className='mr-2'
 														src={item.image}
 														alt={item.name}
 														width={50}
 														height={50}
 													></Image>
 													&nbsp;
-													{item.name}
+													<p className="text-lg font-bold ">{item.name}</p>
 												</a>
 											</Link>
 										</td>
-										<td className="p-5 text-right">
+										<td className="p-5 text-center">
 											<select
+												className="bg-slate-400"
 												value={item.quantity}
 												onChange={(event) =>
 													updateCartHandler(item, event.target.value)
@@ -78,10 +81,10 @@ function CartScreen() {
 												))}
 											</select>
 										</td>
-										<td className="p-5 text-right">${item.price}</td>
+										<td className="p-5 text-center">${item.price}</td>
 										<td className="p-5 text-center">
 											<button onClick={() => removeItemHandler(item)}>
-												<div className="h-5 w-5">X</div>
+												<div className="text-2xl text-red-500"><BsXCircleFill/></div>
 											</button>
 										</td>
 									</tr>
@@ -89,18 +92,22 @@ function CartScreen() {
 							</tbody>
 						</table>
 					</div>
-					<div className="card p-5">
+					<div className="card mt-5">
 						<ul>
 							<li>
 								<div className="pb-3 text-xl">
-									Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : $
-									{cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+									<p>
+										Subtotal : ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+									</p>
+									<p>
+										Items : {cartItems.reduce((a, c) => a + c.quantity, 0)}
+									</p>
 								</div>
 							</li>
 							<li>
 								<button
 									onClick={() => router.push("login?redirect=/shipping")}
-									className="primary-button w-full"
+									className="primary-button w-full mt-5"
 								>
 									Check Out
 								</button>

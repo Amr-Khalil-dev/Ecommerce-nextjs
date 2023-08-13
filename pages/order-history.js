@@ -39,13 +39,13 @@ function OrderHistoryScreen() {
   }, []);
   return (
     <Layout title="Order History">
-      <h1 className="mb-4 text-xl">Order History</h1>
+      <h1 className="mb-4 text-2xl text-white">Order History</h1>
       {loading ? (
         <div>Loading...</div>
       ) : error ? (
         <div className="alert-error">{error}</div>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto text-white">
           <table className="min-w-full">
             <thead className="border-b">
               <tr>
@@ -74,7 +74,7 @@ function OrderHistoryScreen() {
                       : 'not delivered'}
                   </td>
                   <td className=" p-5 ">
-                    <Link href={`/order/${order._id}`} passHref>
+                    <Link href={`/order/${order._id}`} passHref legacyBehavior>
                       <a>Details</a>
                     </Link>
                   </td>
